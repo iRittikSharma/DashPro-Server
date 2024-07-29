@@ -1,5 +1,6 @@
 import express from "express";
 import { PORT } from "./config/ServerConfig";
+import { connect } from "./config/database";
 const app = express();
 
 const setupAndStartServer = () => {
@@ -10,6 +11,7 @@ const setupAndStartServer = () => {
   });
   app.listen(PORT, async () => {
     console.log(`server started at port : ${PORT}`);
+    await connect();
   });
 };
 
