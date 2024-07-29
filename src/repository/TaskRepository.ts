@@ -1,8 +1,7 @@
-import { promises } from "dns";
 import Tasks from "../models/tasks";
 import { ITask } from "../types/task";
 
-class TasksRepository {
+class TaskRepository {
   async createTask(data: Partial<ITask>): Promise<ITask> {
     const createdTask = await Tasks.create(data);
     return createdTask;
@@ -14,4 +13,4 @@ class TasksRepository {
   }
 }
 
-export default TasksRepository;
+export default TaskRepository;
