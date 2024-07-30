@@ -2,6 +2,13 @@ import mongoose, { Model, Schema } from "mongoose";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { IUser } from "../types/user";
+import { JWT_KEY } from "../config/ServerConfig";
+interface JWTResponse {
+  token: string;
+  id: string;
+  name: string;
+  email: string;
+}
 
 const userSchema: Schema<IUser> = new mongoose.Schema(
   {
@@ -39,10 +46,11 @@ userSchema.methods.comparePassword = function compare(
 };
 
 // functionn for generating the JWT token
-userSchema.methods.genJWT = function generate(): String {
-  return jwt.sign({ id: this.id, email: this.email }, "Project_secret", {
+userSchema.methods.genJWT = function generate(): JWTResponse {
+  const token: string = jwt.sign({ id: this.id, email: this.email }, JWT_KEY, {
     expiresIn: "1h",
   });
+  return { token, id: this.id, name: this.name, email: this.email };
 };
 
 const User: Model<IUser> = mongoose.model<IUser>("User", userSchema);

@@ -8,6 +8,7 @@ const taskService = new TaskService();
 export const createTask = async (req: Request, res: Response) => {
   try {
     const taskData: ITask = req.body as ITask;
+    console.log("something", taskData);
     const response = await taskService.createTask(taskData);
 
     res.status(201).json({

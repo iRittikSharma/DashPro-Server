@@ -11,6 +11,9 @@ class UserRepository {
     const users = await User.find({});
     return users;
   }
+  async findByEmail(email: string): Promise<IUser | null> {
+    return User.findOne({ email });
+  }
 }
 
 export default UserRepository;

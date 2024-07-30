@@ -7,3 +7,5 @@ if (!process.env.DB_URL) {
 
 export const PORT = process.env.PORT;
 export const DB_URL: string = process.env.DB_URL;
+
+export const JWT_KEY: string = process.env.JWT_KEY || "";

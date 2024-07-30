@@ -9,7 +9,6 @@ const tasksSchema: Schema<ITask> = new mongoose.Schema(
     },
     description: {
       type: String,
-      require: true,
     },
     status: {
       type: String,
@@ -20,7 +19,9 @@ const tasksSchema: Schema<ITask> = new mongoose.Schema(
     priority: {
       type: String,
       enum: ["Low", "Medium", "Urgent"],
-      require: true,
+    },
+    deadline: {
+      type: String,
     },
     userId: {
       type: mongoose.Schema.Types.ObjectId,
