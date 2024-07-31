@@ -31,6 +31,7 @@ const setupAndStartServer = () => {
     app.use(body_parser_1.default.urlencoded({ extended: true }));
     app.use("/api", index_1.default);
     app.get("/test", (req, res) => {
+        console.log("testing is done ");
         res.send("testing is working properly");
     });
     app.listen(ServerConfig_1.PORT, () => __awaiter(void 0, void 0, void 0, function* () {

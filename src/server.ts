@@ -18,6 +18,8 @@ const setupAndStartServer = () => {
   app.use(bodyParser.urlencoded({ extended: true }));
   app.use("/api", ApiRoutes);
   app.get("/test", (req, res) => {
+    console.log("testing is done ");
+
     res.send("testing is working properly");
   });
   app.listen(PORT, async () => {
