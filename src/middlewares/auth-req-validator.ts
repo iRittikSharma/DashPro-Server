@@ -31,7 +31,13 @@ export const authenticateToken = (
 
   jwt.verify(token, JWT_KEY, (err: VerifyErrors | null, user: any) => {
     if (err) return res.sendStatus(403); // Invalid token, forbidden
-    req.body = { ...req.body, userId: user.id };
+    if (!req.body) {
+      req.body = { ...req.body, user: user };
+      console.log("hi", req.body);
+    } else {
+      req.body = { ...req.body, userId: user.id };
+    }
+
     next(); // Proceed to the next middleware or route handler
   });
 };

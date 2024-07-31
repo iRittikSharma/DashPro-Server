@@ -12,7 +12,10 @@ class UserRepository {
     return users;
   }
   async findByEmail(email: string): Promise<IUser | null> {
-    return User.findOne({ email });
+    return await User.findOne({ email });
+  }
+  async findByID(id: string): Promise<IUser | null> {
+    return await User.findById(id).select("name _id");
   }
 }
 

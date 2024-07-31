@@ -23,6 +23,9 @@ class UserService {
     }
     return user.genJWT();
   }
+  async findByID(id : string){
+    return await this.userRepository.findByID(id);
+  } 
 }
 
 export default UserService;
