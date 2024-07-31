@@ -17,7 +17,7 @@ const cors_1 = __importDefault(require("cors"));
 const body_parser_1 = __importDefault(require("body-parser"));
 const ServerConfig_1 = require("./config/ServerConfig");
 const database_1 = require("./config/database");
-const index_js_1 = __importDefault(require("./routes/index.js"));
+const index_1 = __importDefault(require("./routes/index"));
 const app = (0, express_1.default)();
 const setupAndStartServer = () => {
     // const corsOptions = {
@@ -29,7 +29,7 @@ const setupAndStartServer = () => {
     app.use((0, cors_1.default)());
     app.use(body_parser_1.default.json());
     app.use(body_parser_1.default.urlencoded({ extended: true }));
-    app.use("/api", index_js_1.default);
+    app.use("/api", index_1.default);
     app.get("/test", (req, res) => {
         res.send("testing is working properly");
     });

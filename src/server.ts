@@ -3,7 +3,7 @@ import cors from "cors";
 import bodyParser from "body-parser";
 import { PORT } from "./config/ServerConfig";
 import { connect } from "./config/database";
-import ApiRoutes from "./routes/index.js";
+import ApiRoutes from "./routes/index";
 const app = express();
 
 const setupAndStartServer = () => {
