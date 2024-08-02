@@ -42,6 +42,15 @@ class TaskService {
       }
     }
   }
+
+  async updateData(id: string, data: Partial<ITask>): Promise<Boolean> {
+    try {
+      const isUpdated = await this.taskRepository.updateData(id, data);
+      return isUpdated;
+    } catch (error) {
+      throw error;
+    }
+  }
 }
 
 export default TaskService;

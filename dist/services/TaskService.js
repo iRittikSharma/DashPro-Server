@@ -50,5 +50,16 @@ class TaskService {
             }
         });
     }
+    updateData(id, data) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const isUpdated = yield this.taskRepository.updateData(id, data);
+                return isUpdated;
+            }
+            catch (error) {
+                throw error;
+            }
+        });
+    }
 }
 exports.default = TaskService;

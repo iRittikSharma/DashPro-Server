@@ -16,14 +16,42 @@ const tasks_1 = __importDefault(require("../models/tasks"));
 class TaskRepository {
     createTask(data) {
         return __awaiter(this, void 0, void 0, function* () {
-            const createdTask = yield tasks_1.default.create(data);
-            return createdTask;
+            try {
+                const createdTask = yield tasks_1.default.create(data);
+                return createdTask;
+            }
+            catch (error) {
+                throw error;
+            }
         });
     }
     getUserTasks(id) {
         return __awaiter(this, void 0, void 0, function* () {
-            const tasks = yield tasks_1.default.find({ userId: id });
-            return tasks;
+            try {
+                const tasks = yield tasks_1.default.find({ userId: id });
+                return tasks;
+            }
+            catch (error) {
+                throw error;
+            }
+        });
+    }
+    updateData(id, data) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                console.log(id, data);
+                const updatedTask = yield tasks_1.default.findByIdAndUpdate(id, data, {
+                    new: true,
+                    runValidators: true,
+                });
+                if (!updatedTask) {
+                    throw new Error("Triying to update the invalid field");
+                }
+                return true;
+            }
+            catch (error) {
+                throw error;
+            }
         });
     }
 }

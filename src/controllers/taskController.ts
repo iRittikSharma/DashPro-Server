@@ -52,3 +52,28 @@ export const userTasks = async (req: Request, res: Response) => {
     });
   }
 };
+
+export const updateTask = async (req: Request, res: Response) => {
+  try {
+    const id: string = req.query.id as string;
+    const data = req.body;
+    delete data.userId;
+    console.log(data);
+    const isUpdated = await taskService.updateData(id, data);
+
+    res.status(200).json({
+      sucess: true,
+      message: "Sucessfully updated the tasks of User",
+      data: isUpdated,
+      err: {},
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({
+      sucess: false,
+      message: "something went wrong",
+      data: {},
+      err: error,
+    });
+  }
+};

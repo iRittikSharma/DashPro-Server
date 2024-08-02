@@ -11,6 +11,7 @@ const router = express_1.default.Router();
 router.get("/tasks", taskController_1.userTasks); // we need to setup the authention here
 router.post("/getUserDetails", auth_req_validator_1.authenticateToken, userController_1.userDetail);
 router.post("/addTask", auth_req_validator_1.authenticateToken, taskController_1.createTask);
+router.put("/updateTask", auth_req_validator_1.authenticateToken, taskController_1.updateTask);
 //user router
 router.post("/signUp", userController_1.signup);
 router.post("/logIn", userController_1.login);
