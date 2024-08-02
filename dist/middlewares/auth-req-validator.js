@@ -9,12 +9,18 @@ const ServerConfig_1 = require("../config/ServerConfig");
 // Define the middleware function
 const authenticateToken = (req, res, next) => {
     const authHeader = req.headers["authorization"];
+    console.log("something", authHeader);
     const token = authHeader && authHeader.split(" ")[1]; // Extract token from Bearer header
     if (token == null)
-        return res.sendStatus(401); // No token, unauthorized
+        return res.sendStatus(500); // No token, unauthorized
     jsonwebtoken_1.default.verify(token, ServerConfig_1.JWT_KEY, (err, user) => {
         if (err)
-            return res.sendStatus(403); // Invalid token, forbidden
+            return res.status(201).json({
+                success: false,
+                message: "session expired",
+                data: false,
+                err: "your token is expired",
+            }); // Invalid token, forbidden
         if (!req.body) {
             req.body = Object.assign(Object.assign({}, req.body), { user: user });
             console.log("hi", req.body);
